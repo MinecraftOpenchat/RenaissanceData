@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Renaissance (Archive - Clean)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* 基本リセット */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 1920px; height: 1080px; overflow: hidden; }
+    body { font-family: 'Noto Sans JP', sans-serif; background: #87CEEB; }
+
+    /* スライド（アーカイブ向け：アニメーション除去） */
+    .slide {
+      display: none;
+      width: 1920px;
+      height: 1080px;
+      position: absolute;
+      background: linear-gradient(#5B8731 0%, #5B8731 8%, #8B6914 8%, #8B6914 100%);
+      border: 10px solid #3D2817;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      padding: 80px;
+    }
+    .slide.active { display: flex; }
+
+    /* 不要な装飾は削除。軽量化用に最低限のみ定義 */
+    .main-title {
+      font-family: 'Cinzel', serif;
+      font-size: 120px;
+      font-weight: 700;
+      color: #FFD700;
+      text-shadow: 6px 6px #3D2817, 0 0 30px rgba(255,215,0,0.5);
+      text-align: center;
+      z-index: 10;
+      letter-spacing: 8px;
+      font-style: italic;
+      margin-bottom: 60px;
+    }
+
+    /* コンテンツ */
+    .sec-title { font-size:72px; font-weight:700; color:#FFEB3B; text-shadow:5px 5px #3D2817; margin-bottom:40px; text-align:center; }
+    .content-area { z-index:10; width:100%; max-width:1280px; display:flex; flex-direction:column; gap:28px; align-items:flex-start; }
+
+    .text-component {
+      background: linear-gradient(#6B9741 0%, #6B9741 12%, #9B7916 12%);
+      border: 6px solid #3D2817;
+      padding: 28px 34px;
+      width: 100%;
+      box-shadow: 8px 8px #3D2817;
+    }
+    .text-component p { font-size:28px; color:#FFF; text-shadow:2px 2px #3D2817; line-height:1.7; white-space:pre-line; }
+
+    .text-component.center p { font-size:40px; font-weight:700; text-align:center; }
+
+    .highlight { color:#FF6B6B; font-weight:700; text-shadow:2px 2px #3D2817; }
+
+    .image-component { border:6px solid #3D2817; padding:12px; background:linear-gradient(#6B9741, #9B7916); box-shadow:8px 8px #3D2817; }
+    .image-component.square { width:400px; height:400px; }
+    .image-component.medium { width:800px; height:500px; }
+    .image-component img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    .flex-container { display:flex; gap:30px; width:100%; align-items:flex-start; }
+    .text-side { flex:1; display:flex; flex-direction:column; gap:12px; }
+
+    .note-label { font-size:18px; color:#E0E0E0; text-shadow:2px 2px #3D2817; font-style:italic; padding-left:8px; }
+
+    /* エンディング */
+    .ending-container { z-index:10; text-align:center; display:flex; flex-direction:column; gap:40px; align-items:center; }
+    .copyright { font-size:36px; font-weight:700; color:#FFD700; text-shadow:5px 5px #3D2817; line-height:1.6; }
+
+    /* ナビゲーションとボタン（アーカイブ用）*/
+    .nav {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      display:flex;
+      gap:12px;
+      align-items:center;
+      z-index:60;
+    }
+    .dot { width:16px; height:16px; background:#5B8731; border:3px solid #3D2817; cursor:pointer; transition:all 0.12s; border-radius:50%; }
+    .dot.on { background:#8BFF31; transform:scale(1.08); }
+
+    .controls { display:flex; gap:10px; align-items:center; margin-left:12px; }
+    .btn {
+      background:#fff;
+      border:2px solid #3D2817;
+      padding:8px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:700;
+      box-shadow:3px 3px #3D2817;
+    }
+    .btn:active { transform:translateY(1px); }
+
+    .slide-index { color:#fff; text-shadow:2px 2px #3D2817; font-weight:700; margin-left:8px; }
+
+    .hidden { display:none !important; }
+  </style>
+</head>
+<body>
+
+<!-- スライド1: タイトル -->
+<div class="slide active">
+  <h1 class="main-title">The Renaissance</h1>
+  <div class="content-area" style="align-items:center;">
+    <div class="text-component center"><p>アーカイブ版プレゼンテーション</p></div>
+    <div class="text-component center"><p>資料の内容を順番にご確認ください。</p></div>
+  </div>
+</div>
+
+<!-- スライド2: そもそもRenaissanceって何よ？ -->
+<div class="slide">
+  <h2 class="sec-title">そもそもRenaissanceって何よ？</h2>
+  <div class="content-area">
+    <div class="text-component"><p>色々見ていると...最近OpenChatが過疎傾向なんです。</p></div>
+    <div class="text-component"><p>ってことで...再復興を目指しちゃおう！っていうのが目標なのです。</p></div>
+    <div class="text-component"><p>なお、今回は既存の見直しがメインとなっております。</p></div>
+  </div>
+</div>
+
+<!-- スライド3: OCルールの大幅改定 -->
+<div class="slide">
+  <h2 class="sec-title">OCルールの大幅改定</h2>
+  <div class="content-area">
+    <div class="text-component"><p>ルールノートが見やすくなります！以前のノートの 20% 程度の長さで表示が可能になります！</p></div>
+    <div class="text-component"><p>ルールが緩和され、雑談用サブトークかノートで別ゲームの募集が可能になりました！ただ、これまで通りマイクラの話は見逃さないように...！</p></div>
+    <div class="text-component"><p>それに伴い、管理側での判断基準も緩和されます！ただし、違反行為をして良いってことじゃないのでご注意！</p></div>
+  </div>
+</div>
+
+<!-- スライド4: 目安箱の設置 -->
+<div class="slide">
+  <h2 class="sec-title">目安箱の設置</h2>
+  <div class="content-area">
+    <div class="text-component"><p>ノートに「目安箱」が追加されます！直してほしいところや要望を投稿できます！</p></div>
+    <div class="text-component"><p>皆さんの意見を反映させていきたいので、ぜひ活用してください！</p></div>
+  </div>
+</div>
+
+<!-- スライド5: 管理OCの運用変更 -->
+<div class="slide">
+  <h2 class="sec-title">管理OCの運用変更</h2>
+  <div class="content-area">
+    <div class="text-component"><p>議論に参加する人が減少し、全体的な意見が取れなくなったため管理OCは議論する場所としての運用を終了します！</p></div>
+    <div class="text-component"><p>文章上ではどうしてもすれ違いが発生して衝突が起きやすかったため、今後意見を出す際は目安箱よりお願いします！</p></div>
+  </div>
+</div>
+
+<!-- スライド6: マルチ募集サブトーク -->
+<div class="slide">
+  <h2 class="sec-title">マルチ募集サブトーク</h2>
+  <div class="content-area">
+    <div class="text-component"><p>マルチ募集用サブトーク内では雑談禁止ですが、スレッド内では雑談をすることができます！</p></div>
+    <div class="text-component"><p>今まではマルチ中のトークなどをマルチ募集のサブトークで行えましたが、今回の変更でできなくなりますのでご注意ください。</p></div>
+    <div class="text-component"><p>試験段階ですので、フィードバックはお気軽にどうぞ！</p></div>
+  </div>
+</div>
+
+<!-- スライド7: 共同管理者の新規採用 -->
+<div class="slide">
+  <h2 class="sec-title">共同管理者の新規採用</h2>
+  <div class="content-area">
+    <div class="text-component"><p>新しく <span class="highlight">pothca</span> を新共同管理者として採用することとなりました！</p></div>
+    <div class="flex-container">
+      <div class="text-side">
+        <div class="note-label">💬 pothcaよりコメント：</div>
+        <div class="text-component"><p>働いて働いて休んでまいります。</p></div>
+      </div>
+      <div class="image-component square"><img src="pothca.png" alt="pothca"></div>
+    </div>
+    <div class="text-component"><p>皆様、応援よろしくお願いします～</p></div>
+  </div>
+</div>
+
+<!-- スライド8: 新しい共同管理者を探しています -->
+<div class="slide">
+  <h2 class="sec-title">新しい共同管理者を探しています</h2>
+  <div class="content-area">
+    <div class="text-component"><p>新規共同管理者の採用を行います！</p></div>
+    <div class="text-component"><p>採用基準として、「新規さんの誘導」「ルール違反者への注意」などがキーワードになります！</p></div>
+    <div class="text-component"><p>声掛けは管理側から行います。</p></div>
+  </div>
+</div>
+
+<!-- スライド9: 第２弾の告知 -->
+<div class="slide">
+  <h2 class="sec-title">第２弾の告知</h2>
+  <div class="content-area">
+    <div class="text-component center"><p>第２弾も計画中です！お楽しみに～</p></div>
+    <div class="image-component medium"><img src="image2.png" alt="第２弾予告"></div>
+  </div>
+</div>
+
+<!-- スライド10: 質問タイム -->
+<div class="slide">
+  <h2 class="sec-title">質問タイム</h2>
+  <div class="content-area">
+    <div class="text-component center"><p>質問タイムです！<br>トークでぜひぜひご質問ください～！</p></div>
+  </div>
+</div>
+
+<!-- スライド11: エンディング -->
+<div class="slide">
+  <div class="ending-container">
+    <div class="copyright">© 2019-2025 Minecraft/マイクラ(非公式)<br>All Rights Reserved.</div>
+  </div>
+</div>
+
+<!-- 下部ナビ（ドット＋操作ボタン） -->
+<div class="nav" id="nav"></div>
+
+<script>
+  // --- スライド管理（アーカイブ用、アニメーション除去） ---
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const totalSlides = slides.length;
+  const nav = document.getElementById('nav');
+
+  // 各スライド内の .component を順に表示するための配列
+  let componentIndices = new Array(totalSlides).fill(-1);
+
+  // スライド表示切替（アニメーション無し）
+  function showSlide(index) {
+    if (index < 0) index = 0;
+    if (index >= totalSlides) index = totalSlides - 1;
+    currentSlide = index;
+    slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+
+    // ドット更新
+    document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('on', i === currentSlide));
+    // スライド番号表示 (もしある)
+    const idxEl = document.getElementById('slide-index');
+    if (idxEl) idxEl.textContent = `${currentSlide + 1}/${totalSlides}`;
+  }
+
+  // 現在スライドのコンポーネント表示をリセット
+  function resetComponentsForCurrent() {
+    componentIndices[currentSlide] = -1;
+    const comps = slides[currentSlide].querySelectorAll('.component');
+    comps.forEach(c => c.classList.remove('show'));
+  }
+
+  // 現在スライドの次のコンポーネントを表示、なければ次スライドへ
+  function showNextComponentOrSlide() {
+    const comps = slides[currentSlide].querySelectorAll('.component');
+    componentIndices[currentSlide] = componentIndices[currentSlide] ?? -1;
+    componentIndices[currentSlide]++;
+    if (componentIndices[currentSlide] < comps.length) {
+      comps[componentIndices[currentSlide]].classList.add('show');
+      return true;
+    } else {
+      // すべて表示済み -> 次スライドへ
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+        resetComponentsForCurrent();
+      }
+      return false;
+    }
+  }
+
+  function showPreviousSlide() {
+    if (currentSlide > 0) {
+      currentSlide--;
+      showSlide(currentSlide);
+      resetComponentsForCurrent();
+    }
+  }
+
+  // ナビ・ボタン生成
+  (function createNav() {
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' on' : '');
+      dot.title = `スライド ${i+1}`;
+      dot.addEventListener('click', () => {
+        currentSlide = i;
+        showSlide(currentSlide);
+        resetComponentsForCurrent();
+      });
+      nav.appendChild(dot);
+    }
+
+    // 操作ボタン
+    const controls = document.createElement('div');
+    controls.className = 'controls';
+
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'btn';
+    prevBtn.textContent = '← 前へ';
+    prevBtn.addEventListener('click', showPreviousSlide);
+
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'btn';
+    nextBtn.textContent = '次へ →';
+    nextBtn.addEventListener('click', () => {
+      // タイトルスライドは即次へ
+      if (currentSlide === 0) {
+        currentSlide++;
+        showSlide(currentSlide);
+        resetComponentsForCurrent();
+        return;
+      }
+      showNextComponentOrSlide();
+    });
+
+    const idx = document.createElement('div');
+    idx.className = 'slide-index';
+    idx.id = 'slide-index';
+    idx.textContent = `${currentSlide + 1}/${totalSlides}`;
+
+    controls.appendChild(prevBtn);
+    controls.appendChild(nextBtn);
+    controls.appendChild(idx);
+    nav.appendChild(controls);
+  })();
+
+  // 初期化：最初のスライドを表示
+  showSlide(0);
+</script>
+</body>
+</html>
